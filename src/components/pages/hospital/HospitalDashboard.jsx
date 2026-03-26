@@ -32,7 +32,7 @@ const HospitalDashboard = () => {
     <>
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex flex-col md:flex-row">
         {/* Sidebar for desktop */}
-        <div className="hidden md:block md:w-64 bg-white border-r border-blue-100 shadow-lg md:h-screen md:fixed md:left-0 md:top-0">
+        <div className="hidden md:block md:w-64 bg-white border-r border-blue-100 shadow-lg md:h-screen md:fixed md:left-0 md:top-0 z-50">
           <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
         {/* Sidebar toggle for mobile */}

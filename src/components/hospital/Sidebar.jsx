@@ -119,7 +119,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
 
       {/* Logout Confirmation Modal */}
       {showLogoutModal && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity">
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[9999] transition-opacity">
           <div className="bg-white rounded-xl border border-slate-200/80 max-w-sm w-full mx-4 overflow-hidden">
             {/* Modal gradient header */}
             <div className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 px-6 py-5 flex items-center gap-3">
