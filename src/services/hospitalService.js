@@ -98,60 +98,60 @@ export async function getAllPatients(token) {
 	  }	
 	}
 
-// Visits: create a new visit for a patient (patientPublicId = six-digit ID)
-export async function createVisit(patientPublicId, payload, token) {
-  try {
-    const url = `${API_URL}/hospital/create_visit.php`;
-    const authToken = token || (typeof localStorage !== 'undefined' && (localStorage.getItem('hospitalToken') || localStorage.getItem('token')));
-    const headers = authToken ? { Authorization: `Bearer ${authToken}` } : {};
-    const { data } = await axios.post(url, payload, { headers });
-    return data; // { message, visit }
-  } catch (error) {
-    const res = error?.response;
-    const payload = res?.data || {};
-    const message = payload.message || payload.error || 'Unable to create visit';
-    const fieldErrors = payload.fieldErrors;
-    const status = res?.status ?? 0;
-    throw { status, message, fieldErrors };
-  }
-}
+// // Visits: create a new visit for a patient (patientPublicId = six-digit ID)
+// export async function createVisit(patientPublicId, payload, token) {
+//   try {
+//     const url = `${API_URL}/hospital/create_visit.php`;
+//     const authToken = token || (typeof localStorage !== 'undefined' && (localStorage.getItem('hospitalToken') || localStorage.getItem('token')));
+//     const headers = authToken ? { Authorization: `Bearer ${authToken}` } : {};
+//     const { data } = await axios.post(url, payload, { headers });
+//     return data; // { message, visit }
+//   } catch (error) {
+//     const res = error?.response;
+//     const payload = res?.data || {};
+//     const message = payload.message || payload.error || 'Unable to create visit';
+//     const fieldErrors = payload.fieldErrors;
+//     const status = res?.status ?? 0;
+//     throw { status, message, fieldErrors };
+//   }
+// }
 
 // Visits: list all visits for a patient (by patient_code)
-export async function getPatientVisits(patientCode, token) {
-  try {
-    const url = `${API_URL}/hospital/patient_visits.php?patient_code=${encodeURIComponent(patientCode)}`;
-    const authToken = token || (typeof localStorage !== 'undefined' && (localStorage.getItem('hospitalToken') || localStorage.getItem('token')));
-    const headers = authToken ? { Authorization: `Bearer ${authToken}` } : {};
-    const { data } = await axios.get(url, { headers });
-    return data; // { status: true, visits: [...] }
-  } catch (error) {
-    const res = error?.response;
-    const payload = res?.data || {};
-    const message = payload.message || payload.error || 'Unable to fetch visits';
-    const fieldErrors = payload.fieldErrors;
-    const status = res?.status ?? 0;
-    throw { status, message, fieldErrors };
-  }
-}
+// export async function getPatientVisits(patientCode, token) {
+//   try {
+//     const url = `${API_URL}/hospital/patient_visits.php?patient_code=${encodeURIComponent(patientCode)}`;
+//     const authToken = token || (typeof localStorage !== 'undefined' && (localStorage.getItem('hospitalToken') || localStorage.getItem('token')));
+//     const headers = authToken ? { Authorization: `Bearer ${authToken}` } : {};
+//     const { data } = await axios.get(url, { headers });
+//     return data; // { status: true, visits: [...] }
+//   } catch (error) {
+//     const res = error?.response;
+//     const payload = res?.data || {};
+//     const message = payload.message || payload.error || 'Unable to fetch visits';
+//     const fieldErrors = payload.fieldErrors;
+//     const status = res?.status ?? 0;
+//     throw { status, message, fieldErrors };
+//   }
+// }
 
 // Visits: fetch a single visit by numeric ID
-export async function getVisitById(visitId, token) {
-  try {
+// export async function getVisitById(visitId, token) {
+//   try {
 
-    const url = `${API_URL}/hospital/patient_visits.php`;
-    const authToken = token || (typeof localStorage !== 'undefined' && (localStorage.getItem('hospitalToken') || localStorage.getItem('token')));
-    const headers = authToken ? { Authorization: `Bearer ${authToken}` } : {};
-    const { data } = await axios.get(url, { headers });
-    return data; // full visit
-  } catch (error) {
-    const res = error?.response;
-    const payload = res?.data || {};
-    const message = payload.message || payload.error || 'Unable to fetch visit';
-    const fieldErrors = payload.fieldErrors;
-    const status = res?.status ?? 0;
-    throw { status, message, fieldErrors };
-  }
-}
+//     const url = `${API_URL}/hospital/patient_visits.php`;
+//     const authToken = token || (typeof localStorage !== 'undefined' && (localStorage.getItem('hospitalToken') || localStorage.getItem('token')));
+//     const headers = authToken ? { Authorization: `Bearer ${authToken}` } : {};
+//     const { data } = await axios.get(url, { headers });
+//     return data; // full visit
+//   } catch (error) {
+//     const res = error?.response;
+//     const payload = res?.data || {};
+//     const message = payload.message || payload.error || 'Unable to fetch visit';
+//     const fieldErrors = payload.fieldErrors;
+//     const status = res?.status ?? 0;
+//     throw { status, message, fieldErrors };
+//   }
+// }
 
 
 // forgot password function for the hospital
@@ -182,3 +182,38 @@ export async function resetPassword(payload) {
   }
 }
 
+// Verify NIN and extract patient information
+export async function verifyNIN(nin, token) {
+  try {
+    const url = `${API_URL}/api/patients/verify-nin`;
+    const authToken = token || (typeof localStorage !== 'undefined' && (localStorage.getItem('hospitalToken') || localStorage.getItem('token')));
+    const headers = authToken ? { Authorization: `Bearer ${authToken}` } : {};
+    const { data } = await axios.post(url, { nin }, { headers });
+    return data;
+  } catch (error) {
+    const res = error?.response;
+    const payload = res?.data || {};
+    const message = payload.message || payload.error || 'Unable to verify NIN';
+    const fieldErrors = payload.fieldErrors;
+    const status = res?.status ?? 0;
+    throw { status, message, fieldErrors };
+  }
+}
+
+// create prescription for a patient
+export async function createPrescription(payload, token) {
+  try {
+    const url = `${API_URL}/api/prescriptions`;
+    const authToken = token || (typeof localStorage !== 'undefined' && (localStorage.getItem('hospitalToken') || localStorage.getItem('token')));
+    const headers = authToken ? { Authorization: `Bearer ${authToken}` } : {};
+    const { data } = await axios.post(url, payload, { headers });
+    return data;
+  } catch (error) {
+    const res = error?.response;
+    const payload = res?.data || {};
+    const message = payload.message || payload.error || 'Unable to create prescription';
+    const fieldErrors = payload.fieldErrors;
+    const status = res?.status ?? 0;
+    throw { status, message, fieldErrors };
+  }
+}

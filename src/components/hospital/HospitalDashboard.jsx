@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Sidebar from './Sidebar';
+import Sidebars from './Sidebars';
 import Profile from './Profile';
 import Patients from './Patients';
 import AddPatients from './AddPatients';
@@ -10,10 +10,10 @@ const HospitalDashboard = () => {
 
   return (
     <div className="min-h-screen bg-slate-50/80">
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Sidebars activeTab={activeTab} setActiveTab={setActiveTab} />
       
-      {/* Main content area — pushed right on desktop, full width on mobile (sidebar overlay) */}
-      <main className="md:ml-[260px] min-h-screen">
+      {/* Main content area */}
+      <main className="min-h-screen md:ml-72">
         {/* Top gradient accent bar */}
         <div className="h-36 bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800" />
 

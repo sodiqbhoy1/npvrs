@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { User, Users as UsersIcon, UserPlus } from 'lucide-react';
 
-import Sidebar from '../../hospital/Sidebar';
+import Sidebar from '../../hospital/Sidebars';
 import Profile from '../../hospital/Profile';
 import Patients from '../../hospital/Patients';
 import AddPatients from '../../hospital/AddPatients';
