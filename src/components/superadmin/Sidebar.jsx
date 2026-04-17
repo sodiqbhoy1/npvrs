@@ -6,7 +6,7 @@ const Sidebar = ({ activeTab, setActiveTab, collapsed = false, setCollapsed = ()
   const items = [
     { key: 'overview', label: 'Overview', icon: <LayoutDashboard className="h-5 w-5" /> },
     { key: 'hospitals', label: 'Hospitals', icon: <Building2 className="h-5 w-5" /> },
-    { key: 'activity', label: 'Activity Logs', icon: <BarChart className="h-5 w-5" /> },
+    // { key: 'activity', label: 'Activity Logs', icon: <BarChart className="h-5 w-5" /> },
     { key: 'patients', label: 'Patients', icon: <Users className="h-5 w-5" /> },
     { key: 'profile', label: 'Profile', icon: <UserCircle2 className="h-5 w-5" /> },
     { key: 'settings', label: 'Settings', icon: <Settings className="h-5 w-5" /> },

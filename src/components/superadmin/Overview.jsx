@@ -49,9 +49,9 @@ const Overview = () => {
         let hospitals = []
         try {
              const hData = await getAllHospitals()
-             console.log('Overview API Raw Response:', hData)
+
              hospitals = Array.isArray(hData) ? hData : (hData?.data || hData?.hospitals || [])
-             console.log('Overview Extracted hospitals:', hospitals)
+
         } catch (err) {
             console.error('Error fetching hospitals for stats:', err)
         }

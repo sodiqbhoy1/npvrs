@@ -34,11 +34,11 @@ const Patients = () => {
       try {
         setLoading(true)
         const data = await getAllPatientsForAdmin()
-        console.log('Patients API Raw Response:', data)
+
         
         // Extract patients array from response
         const list = Array.isArray(data) ? data : (data?.data || data?.patients || [])
-        console.log('Patients List to State:', list)
+        
         setPatients(list)
       } catch (e) {
         console.error(e)

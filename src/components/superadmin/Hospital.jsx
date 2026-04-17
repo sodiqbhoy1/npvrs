@@ -12,14 +12,14 @@ const Hospital = () => {
     const fetchHospitals = async () => {
       try {
         const data = await getAllHospitals()
-        console.log('Hospital API Raw Response:', data)
+        
         // Check for array, or data.data (API format), or data.hospitals
         const list = Array.isArray(data) ? data : (data?.data || data?.hospitals || [])
-        console.log('Hospitals List to State:', list)
+        
         
         // Debug filter check: if list is empty, log why
         if (list.length > 0) {
-            console.log('First Item:', list[0])
+            
             console.log('Sample name check:', list[0]?.name)
         }
 

@@ -13,12 +13,13 @@ const Profile = () => {
     const fetchProfile = async () => {
       try {
         setLoading(true)
-        const data = await getSuperAdminProfile()
+        const response = await getSuperAdminProfile()
         
-        // Extract admin data from response
-        const admin = data?.admin || data || {}
+        // Support possible API shapes: { admin }, { data }, { data: { admin } }, or direct payload
+        const admin = response?.admin || response?.data?.admin || response?.data || response || {}
+        
         const profileData = {
-          name: admin.name || admin.username || '',
+          name: admin.name || '',
           email: admin.email || ''
         }
         setProfile(profileData)
