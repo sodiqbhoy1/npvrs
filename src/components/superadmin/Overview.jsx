@@ -101,21 +101,8 @@ const Overview = () => {
           color="emerald"
         />
         
-        <StatCard
-          icon={<TrendingUp className="h-5 w-5 sm:h-6 sm:w-6" />}
-          label="Approved Hospitals"
-          value={stats.approvedHospitals.toLocaleString()}
-          loading={loading}
-          color="blue"
-        />
         
-        <StatCard
-          icon={<Building2 className="h-5 w-5 sm:h-6 sm:w-6" />}
-          label="Pending Approval"
-          value={stats.pendingHospitals.toLocaleString()}
-          loading={loading}
-          color="amber"
-        />
+        
         
         <StatCard
           icon={<Users className="h-5 w-5 sm:h-6 sm:w-6" />}
@@ -138,22 +125,12 @@ const Overview = () => {
                 : 0}%
             </p>
           </div>
-          <div>
-            <p className="text-xs text-gray-500 mb-1">Pending Review</p>
-            <p className="text-lg font-semibold text-gray-900">{stats.pendingHospitals}</p>
-          </div>
+
           <div>
             <p className="text-xs text-gray-500 mb-1">Avg Patients/Hospital</p>
-            <p className="text-lg font-semibold text-gray-900">
-              {stats.approvedHospitals > 0 
-                ? Math.round(stats.totalPatients / stats.approvedHospitals) 
-                : 0}
-            </p>
+           
           </div>
-          <div>
-            <p className="text-xs text-gray-500 mb-1">Active Facilities</p>
-            <p className="text-lg font-semibold text-gray-900">{stats.approvedHospitals}</p>
-          </div>
+         
         </div>
       </div>
     </div>
